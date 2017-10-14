@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<title>Employee detail | Employee register</title>
+	<style>{{ source('./main.css') }}</style>
+	<style>{{ source('./employee-detail/employee-detail.css') }}</style>
+</head>
+<body>
+	<nav>
+		<a href="/evizam/">
+			<img src="/evizam/assets/img/ic_home_black_24px.svg" alt="Home" width="24px" height="24px">
+		</a>
+		<form class="search">
+			<input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar">
+			<input type="button" class="btn" value="Search">
+		</form>
+
+		<span class="user-nav">
+			<img src="{{ base_path ~ directory }}/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
+			John
+		</span>
+	</nav>
+
+	<main>
+		<article>
+			<img src="{{ base_path ~ directory }}/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="profile_picture">
+			<h1 class="name">John Doe</h1>
+			<span class="position">IT manager</span>
+			<a href="mailto:doejohn@example.com" class="email">doejohn@example.com</a>
+			<a href="tel:123456789" class="tel">123 456 789</a>
+			<a href="#" class="web">www.example.org</a>
+			<p class="description">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum pariatur architecto voluptatibus adipisci distinctio dolores explicabo. Reprehenderit ea maiores nemo non ullam, quo vero nam dolorem. Atque, illum excepturi dolores corrupti dignissimos eligendi reprehenderit veritatis est accusamus quis voluptate praesentium unde impedit fugit sit consequatur quasi fuga facilis sunt eius quo accusantium vero harum? Eum veniam provident alias at fuga unde sint dicta eaque odit temporibus! Fugit, labore possimus. Unde inventore laudantium quaerat nam libero quidem assumenda, consectetur quasi! Accusantium debitis illum cum provident, sed atque impedit nulla quod modi cupiditate numquam. Ab aliquid, cum voluptatibus eos repellat officia earum?
+			</p>
+			<button class="btn edit" onclick="location.href='employee-edit'">Edit user</button>
+		</article>
+	</main>
+
+	<footer>
+		Tomas Trejdl | trejdtom | FIT CVUT | 2017
+	</footer>
+</body>
+</html>

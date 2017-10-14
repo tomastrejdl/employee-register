@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<title>Search results: ## | Employee register</title>
+	<style>{{ source('./main.css') }}</style>
+	<style>{{ source('./search/search.css') }}</style>
+</head>
+
+<body>
+	<nav>
+		<a href="/evizam/">
+			<img src="/evizam/assets/img/ic_home_black_24px.svg" alt="Home" width="24px" height="24px">
+		</a>
+		<form class="search">
+			<input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar">
+			<input type="button" class="btn" value="Search">
+		</form>
+
+		<span class="user-nav">
+			<img src="/evizam/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
+			John
+		</span>
+	</nav>
+
+	<header>
+		<h1>Showing search results for: #whatyousearchedfor</h1>
+	</header>
+
+	<main>
+		<article onclick="location.href='employee-detail';">
+			<img src="{{ base_path ~ directory }}/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
+			<span class="name">John Doe</span>
+			<span class="position">IT manager</span>
+			<span class="email">doejohn@example.com</span>
+			<button class="btn edit">Edit user</button>
+		</article>
+	</main>
+
+	<footer>
+		Tomas Trejdl | trejdtom | FIT CVUT | 2017
+	</footer>
+<body>
+
+</html>

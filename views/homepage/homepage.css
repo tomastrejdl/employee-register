@@ -1,0 +1,57 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: 40vh 10vh 5vh 5vh 40vh;
+    grid-gap: 1em;
+    grid-template-areas:
+        ". . ."
+        ". title ."
+        "search search search"
+        ". buttons ."
+        ". . .";
+}
+
+.hero-image {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.hero-title {
+    grid-area: title;
+    font-size: 4em;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.hero-search {
+    grid-area: search;
+    z-index: 2;
+    text-align: center;
+}
+
+.submit-buttons {
+    grid-area: buttons;
+    justify-self: end;
+    align-self: center;
+    font-size: 1em;
+    z-index: 2;
+}
+
+.button:hover {
+    background: #926239;
+    color: #fff;
+}
+
+.search-bar {
+    grid-area: search;
+    justify-self: center;
+    align-self: center;
+    font-size: 1.3em;
+    width: 50%;
+    padding: 0.5em 2em;
+}
+
