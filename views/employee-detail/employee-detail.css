@@ -13,10 +13,6 @@ main {
     padding: 0.5em 2em;
 }
 
-.user-nav {
-	color: #F5F5F5; /* grey 100 */
-}
-
 article {
 	width: 70%;
 	height: 80vh;
@@ -41,7 +37,13 @@ article {
 }
 
 .profile_picture {
+	width: 100%;
+	height: 100%;
 	grid-area: photo;
+}
+
+.name, .position, .email, .tel, .web {
+	justify-self: center;
 }
 
 .name {

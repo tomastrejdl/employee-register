@@ -9,9 +9,10 @@
 	<style>{{ source('./main.css') }}</style>
 	<style>{{ source('./employee-detail/employee-detail.css') }}</style>
 </head>
+
 <body>
 	<nav>
-		<a href="/evizam/">
+		<a href="/evizam/homepage">
 			<img src="/evizam/assets/img/ic_home_black_24px.svg" alt="Home" width="24px" height="24px">
 		</a>
 		<form class="search">
@@ -20,14 +21,14 @@
 		</form>
 
 		<span class="user-nav">
-			<img src="{{ base_path ~ directory }}/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
+			<img src="/evizam/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
 			John
 		</span>
 	</nav>
 
 	<main>
 		<article>
-			<img src="{{ base_path ~ directory }}/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="profile_picture">
+			<img src="/evizam/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="profile_picture">
 			<h1 class="name">John Doe</h1>
 			<span class="position">IT manager</span>
 			<a href="mailto:doejohn@example.com" class="email">doejohn@example.com</a>

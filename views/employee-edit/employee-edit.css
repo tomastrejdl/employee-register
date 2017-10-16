@@ -16,10 +16,6 @@ main {
     padding: 0.5em 2em;
 }
 
-.user-nav {
-	color: #F5F5F5; /* grey 100 */
-}
-
 article {
 	width: 70%;
 	height: 80vh;
@@ -53,6 +49,8 @@ article input {
 }
 .profile_picture {
 	grid-area: photo;
+	height: 100%;
+	width: 100%;
 }
 
 .name {

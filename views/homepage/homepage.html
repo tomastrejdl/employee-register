@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,20 @@
 	<style>{{ source('./main.css') }}</style>
 	<style>{{ source('./homepage/homepage.css') }}</style>
 </head>
+
 <body>
 	<nav>
-		<span class="user-nav">#username</span>
+		<a href="/evizam/homepage">
+			<img src="/evizam/assets/img/ic_home_black_24px.svg" alt="Home" width="24px" height="24px">
+		</a>
+
+		<span class="user-nav">
+			<img src="/evizam/assets/img/ic_person_black_24px.svg" alt="Profile picture" class="thumbnail">
+			John
+		</span>
 	</nav>
-	<main class="hero-image">
+
+	<main>
 		<h1 class="hero-title">Employee register</h1>
 		<form id="search" class="hero-search" action="/search.php" method="get">
 			<input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" autofocus>
@@ -23,8 +33,6 @@
 			<input form="search" type="button" class="btn" value="I'm feelin' lucky!">
 		</div>
 	</main>
-	
-	
 
 	<footer>
 		Tomas Trejdl | trejdtom | FIT CVUT | 2017

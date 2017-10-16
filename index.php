@@ -16,7 +16,7 @@ $search_view = $twig->load('search/search.html');
 $employee_detail_view = $twig->load('employee-detail/employee-detail.html');
 $employee_edit_view = $twig->load('employee-edit/employee-edit.html');
 
-Evizam\Router::set('index.php', function($homepage_view) {
+Evizam\Router::set('homepage', function($homepage_view) {
     echo $homepage_view->render(array(
         'test' => 'Homepage loaded. It works!'
     ));
