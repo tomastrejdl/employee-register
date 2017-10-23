@@ -3,7 +3,7 @@
 /*
  * This file is part of Twig.
  *
- * (c) 2009 Fabien Potencier
+ * (c) Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,15 +12,17 @@
 /**
  * Represents a security policy which need to be enforced when sandbox mode is enabled.
  *
+ * @final
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-final class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyInterface
+class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyInterface
 {
-    private $allowedTags;
-    private $allowedFilters;
-    private $allowedMethods;
-    private $allowedProperties;
-    private $allowedFunctions;
+    protected $allowedTags;
+    protected $allowedFilters;
+    protected $allowedMethods;
+    protected $allowedProperties;
+    protected $allowedFunctions;
 
     public function __construct(array $allowedTags = array(), array $allowedFilters = array(), array $allowedMethods = array(), array $allowedProperties = array(), array $allowedFunctions = array())
     {
@@ -82,7 +84,7 @@ final class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyIn
 
     public function checkMethodAllowed($obj, $method)
     {
-        if ($obj instanceof Twig_Template || $obj instanceof Twig_Markup) {
+        if ($obj instanceof Twig_TemplateInterface || $obj instanceof Twig_Markup) {
             return true;
         }
 
@@ -119,3 +121,5 @@ final class Twig_Sandbox_SecurityPolicy implements Twig_Sandbox_SecurityPolicyIn
         }
     }
 }
+
+class_alias('Twig_Sandbox_SecurityPolicy', 'Twig\Sandbox\SecurityPolicy', false);

@@ -3,8 +3,8 @@
 /*
  * This file is part of Twig.
  *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
+ * (c) Fabien Potencier
+ * (c) Armin Ronacher
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,8 +19,10 @@
  *    <title>{% block title %}{% endblock %} - My Webpage</title>
  *  {% endblock %}
  * </pre>
+ *
+ * @final
  */
-final class Twig_TokenParser_Block extends Twig_TokenParser
+class Twig_TokenParser_Block extends Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
@@ -67,3 +69,5 @@ final class Twig_TokenParser_Block extends Twig_TokenParser
         return 'block';
     }
 }
+
+class_alias('Twig_TokenParser_Block', 'Twig\TokenParser\BlockTokenParser', false);
