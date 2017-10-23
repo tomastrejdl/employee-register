@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Editing {{ employee.firstName ~ " " ~ employee.lastName}} | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/app/css/edit.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <span class="arrow-back" onclick="location.href='{{ path('detail', {'employee_id': employee_id}) }}'">
+            <img src="{{ asset('bundles/app/img/ic_arrow_back_black_24px.svg') }}" alt="Back" width="32px" height="32px">
+    </span>
+
+    <header>
+        <h1>Editing employee {{ employee.firstName ~ " " ~ employee.lastName}} ({{ employee.username }})</h1>
+    </header>
+
+    <main>
+        <article>
+            <form>
+                <img src="{{ asset('bundles/app/img/ic_person_black_24px.svg') }}" alt="Profile picture" class="profile_picture">
+                <input type="text" class="firstName" value="{{ employee.firstName}}" placeholder="First Name"></input>
+                <input type="text" class="lastName" value="{{ employee.lastName}}" placeholder="Last Name"></input>
+                <input type="text" class="position" value="{{ employee.position}}" placeholder="Position"></input>
+                <input type="email" class="email" value="{{ employee.email }}" placeholder="Email"></input>
+                <input type="tel" class="tel" value="{{ employee.tel }}" placeholder="Tel"></input>
+                <input type="url" class="web" value="{{ employee.web }}" placeholder="Web"></input>
+                <textarea class="description">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum pariatur architecto voluptatibus adipisci distinctio dolores explicabo. Reprehenderit ea maiores nemo non ullam, quo vero nam dolorem. Atque, illum excepturi dolores corrupti dignissimos eligendi reprehenderit veritatis est accusamus quis voluptate praesentium unde impedit fugit sit consequatur quasi fuga facilis sunt eius quo accusantium vero harum? Eum veniam provident alias at fuga unde sint dicta eaque odit temporibus! Fugit, labore possimus. Unde inventore laudantium quaerat nam libero quidem assumenda, consectetur quasi! Accusantium debitis illum cum provident, sed atque impedit nulla quod modi cupiditate numquam. Ab aliquid, cum voluptatibus eos repellat officia earum?
+                </textarea>
+                <button class="btn save">Save</button>
+            </form>
+        </article>
+    </main>
+{% endblock %}

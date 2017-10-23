@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ employee.firstName ~ " " ~ employee.lastName}} | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/app/css/detail.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <main>
+        <span class="arrow-back" onclick="location.href='{{ path('search') }}'">
+            <img src="{{ asset('bundles/app/img/ic_arrow_back_black_24px.svg') }}" alt="Back" width="32px" height="32px">
+        </span>
+        <article>
+            <img src="{{ asset('bundles/app/img/ic_person_black_24px.svg') }}" alt="Profile picture" class="profile_picture">
+            <h1 class="name">{{ employee.firstName ~ " " ~ employee.lastName }}</h1>
+            <span class="position">{{  employee.position }}</span>
+            <a href="mailto:{{  employee.email }}" class="email">{{  employee.email }}</a>
+            <a href="tel:123456789" class="tel">{{  employee.tel }}</a>
+            <a href="#" class="web">{{  employee.web }}</a>
+            <p class="description">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum pariatur architecto voluptatibus adipisci distinctio dolores explicabo. Reprehenderit ea maiores nemo non ullam, quo vero nam dolorem. Atque, illum excepturi dolores corrupti dignissimos eligendi reprehenderit veritatis est accusamus quis voluptate praesentium unde impedit fugit sit consequatur quasi fuga facilis sunt eius quo accusantium vero harum? Eum veniam provident alias at fuga unde sint dicta eaque odit temporibus! Fugit, labore possimus. Unde inventore laudantium quaerat nam libero quidem assumenda, consectetur quasi! Accusantium debitis illum cum provident, sed atque impedit nulla quod modi cupiditate numquam. Ab aliquid, cum voluptatibus eos repellat officia earum?
+            </p>
+            <button class="btn edit" onclick="location.href='{{ path('edit', {'employee_id': employee_id}) }}'">Edit user</button>
+        </article>
+    </main>
+{% endblock %}

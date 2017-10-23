@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Homepage | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/app/css/homepage.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <main>
+        <h1 class="hero-title">Employee register</h1>
+        <form id="search" class="hero-search" method="get">
+            <input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" autofocus  disabled>
+        </form>
+        <div class="submit-buttons">
+            <button class="btn show-all" onclick="location.href='{{ path('search') }}'">Show All</button>
+            <input form="search" type="button" class="btn submit" value="Search" onclick="location.href='{{ path('search') }}';"  disabled>
+            <input form="search" type="button" class="btn lucky" value="I'm feelin' lucky!"  disabled>
+        </div>
+    </main>
+{% endblock %}
