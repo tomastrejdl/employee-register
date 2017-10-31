@@ -1,0 +1,81 @@
+.search > .btn:hover {
+	border-color: #000;
+}
+
+header {
+	margin-top: 4em;
+}
+
+main {
+	margin-bottom: calc(3em + 1.8em);
+}
+
+article {
+	height: 15vh;
+	background-color: #fff;
+	margin: 1rem auto;
+	padding: 1em 2em;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	cursor: pointer;
+
+	display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: .2em;
+	grid-template-areas: 
+		"thumbnail name ."
+		"thumbnail position ."
+		"thumbnail email edit";
+	border: 1px solid transparent;
+}
+
+article:hover {
+	border: 1px solid #3F51B5; /* indigo 500 */
+}
+
+article:first-child {
+	margin-top: 0;
+}
+
+.name {
+	grid-area: name;
+	font-size: 1.5em;
+}
+
+.position {
+	grid-area: position;
+}
+
+.email {
+	grid-area: email;
+}
+
+.edit {
+	grid-area: edit;
+	justify-self: center;
+	align-self: center;
+}
+
+h1 {
+	padding: .5em 0;
+	text-align: center;
+}
+
+.thumbnail {
+    grid-area: thumbnail;
+    height: calc( 13vh - 2em );
+    width: calc( 13vh - 2em );
+}
+
+.thumbnail_bg {
+    grid-area: thumbnail;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    height: calc( 15vh - 2em );
+    width: calc( 15vh - 2em );
+    border-radius: 100%;
+}

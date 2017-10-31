@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Search results: ## | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'assets/css/search.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <header>
+        {% if employees is empty %}
+            <h1>No employees found!</h1>
+        {% else %}
+            <h1>Showing all employees</h1>
+        {% endif %}
+    </header>
+
+    <main>
+        {% for employee in employees %}
+        <article onclick="location.href='{{ path('detail', {'employee_id': employee.id}) }}';">
+            <div class="thumbnail_bg" style="background-color: {{ random(colors) }}">
+                <img src="{{ asset('assets/img/ic_person_grey100_24px.svg') }}" alt="Profile picture" class="thumbnail">
+            </div>
+            <span class="name">{{ employee.firstName ~ " " ~ employee.lastName}}</span>
+            <span class="position">{{ employee.role.title }}</span>
+            <span class="email">{{ employee.email }}</span>
+            <a href="{{ path('edit', {'employee_id': employee.id}) }}" class="btn edit">Edit user</a>
+        </article>
+        {% endfor %}
+    </main>
+{% endblock %}
