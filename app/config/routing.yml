@@ -1,3 +1,4 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+trejdl_employee:
+    resource: "@TrejdlEmployeeBundle/Controller/"
+    type:     annotation
+    prefix:   /
