@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% stylesheets 'assets/css/main.css' filter='cssrewrite' %}
+    {% stylesheets
+        'assets/css/main.css'
+        'assets/css/form.css'
+        'assets/css/material-colors.css'
+            filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% block stylesheets %}{% endblock %}
@@ -14,15 +19,15 @@
 <body>
 <nav>
     <a href="{{ path('homepage') }}">
-        <img src="{{ asset('assets/img/ic_home_grey100_24px.svg') }}" alt="Home" width="24px" height="24px">
+        <i class="material-icons">home</i>
     </a>
     <form class="search nav-search">
         <input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" disabled>
         <input type="button" class="btn" value="Search" disabled>
     </form>
 
-    <a href="{{ path('accounts', {'employee_id': 9}) }}" class="user-nav">
-        <img src="{{ asset('assets/img/ic_person_grey100_24px.svg') }}" alt="Profile picture">
+    <a href="{{ path('my-accounts-list', {'employee_id': 1}) }}" class="user-nav">
+        <i class="material-icons">person</i>
         John Doe
     </a>
 </nav>

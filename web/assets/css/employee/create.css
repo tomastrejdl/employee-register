@@ -1,0 +1,10 @@
+h1 {
+    padding-top: .5em;
+    text-align: center;
+}
+
+@media screen and (max-width: 824px) {
+    .arrow-back {
+        display: none;
+    }
+}

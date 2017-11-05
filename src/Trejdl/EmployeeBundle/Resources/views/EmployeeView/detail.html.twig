@@ -3,18 +3,22 @@
 {% block title %}{{ employee.firstName ~ " " ~ employee.lastName}} | Employee register{% endblock %}
 
 {% block stylesheets %}
-    {% stylesheets 'assets/css/detail.css' filter='cssrewrite' %}
+    {% stylesheets
+            'assets/css/employee/detail.css'
+            'assets/css/employee/employee.css'
+        filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
+    <header></header>
     <main>
-        <a href="{{ path('search') }}" class="arrow-back">
-            <img src="{{ asset('assets/img/ic_arrow_back_black_24px.svg') }}" alt="Back" width="32px" height="32px">
+        <a href="{{ path('search') }}" class="fab arrow-back bg-white">
+            <i class="material-icons color-black">arrow_back</i>
         </a>
         <article>
-            <img src="{{ asset('assets/img/ic_person_black_24px.svg') }}" alt="Profile picture" class="profile_picture">
+            <i class="material-icons profile_picture">person</i>
             <h1 class="name">{{ employee.firstName ~ " " ~ employee.lastName }}</h1>
             <span class="position">{{  employee.role.title }}</span>
             <a href="mailto:{{  employee.email }}" class="email">{{  employee.email }}</a>
@@ -23,7 +27,10 @@
             <p class="description">
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum pariatur architecto voluptatibus adipisci distinctio dolores explicabo. Reprehenderit ea maiores nemo non ullam, quo vero nam dolorem. Atque, illum excepturi dolores corrupti dignissimos eligendi reprehenderit veritatis est accusamus quis voluptate praesentium unde impedit fugit sit consequatur quasi fuga facilis sunt eius quo accusantium vero harum? Eum veniam provident alias at fuga unde sint dicta eaque odit temporibus! Fugit, labore possimus. Unde inventore laudantium quaerat nam libero quidem assumenda, consectetur quasi! Accusantium debitis illum cum provident, sed atque impedit nulla quod modi cupiditate numquam. Ab aliquid, cum voluptatibus eos repellat officia earum?
             </p>
-            <a href="{{ path('edit', {'employee_id': employee.id}) }}" class="btn edit">Edit user</a>
+            <a href="{{ path('employee-edit', {'employee_id': employee.id}) }}" class="btn edit">
+                <i class="material-icons">edit</i>
+                Edit employee
+            </a>
         </article>
     </main>
 {% endblock %}

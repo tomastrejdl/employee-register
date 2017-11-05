@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block title %} Editing account | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+            'assets/css/my-accounts/edit.css'
+            'assets/css/my-accounts/my-accounts.css'
+        filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Editing account {{ account.username }}</h1>
+    </header>
+
+    <main>
+        <a href="{{ path('my-accounts-list', {'employee_id': employee_id}) }}" class="fab arrow-back bg-white">
+            <i class="material-icons color-black">arrow_back</i>
+        </a>
+        <article>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </article>
+    </main>
+{% endblock %}

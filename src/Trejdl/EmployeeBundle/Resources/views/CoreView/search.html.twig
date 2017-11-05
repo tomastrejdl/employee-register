@@ -3,7 +3,7 @@
 {% block title %}Search results: ## | Employee register{% endblock %}
 
 {% block stylesheets %}
-    {% stylesheets 'assets/css/search.css' filter='cssrewrite' %}
+    {% stylesheets 'assets/css/core/search.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
@@ -19,15 +19,25 @@
 
     <main>
         {% for employee in employees %}
-        <article onclick="location.href='{{ path('detail', {'employee_id': employee.id}) }}';">
+        <article onclick="location.href='{{ path('employee-detail', {'employee_id': employee.id}) }}';">
             <div class="thumbnail_bg" style="background-color: {{ random(colors) }}">
-                <img src="{{ asset('assets/img/ic_person_grey100_24px.svg') }}" alt="Profile picture" class="thumbnail">
+                <i class="material-icons md-48">person</i>
             </div>
             <span class="name">{{ employee.firstName ~ " " ~ employee.lastName}}</span>
             <span class="position">{{ employee.role.title }}</span>
             <span class="email">{{ employee.email }}</span>
-            <a href="{{ path('edit', {'employee_id': employee.id}) }}" class="btn edit">Edit user</a>
+            <div class="action-buttons">
+                <a href="{{ path('employee-edit', {'employee_id': employee.id}) }}" class="action-btn">
+                    <i class="material-icons color-black">edit</i>
+                </a>
+                <a href="{{ path('employee-delete', {'employee_id': employee.id}) }}" class="action-btn">
+                    <i class="material-icons color-red-500">delete</i>
+                </a>
+            </div>
         </article>
         {% endfor %}
+        <a href="{{ path('employee-create') }}" class="create-employee fab fab-bottom-right bg-green-500">
+            <i class="material-icons color-white">add</i>
+        </a>
     </main>
 {% endblock %}

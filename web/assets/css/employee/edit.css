@@ -1,0 +1,14 @@
+h1 {
+    padding-top: .5em;
+    text-align: center;
+}
+
+article {
+    border: 1px solid red;
+}
+
+@media screen and (max-width: 824px) {
+    .arrow-back {
+        display: none;
+    }
+}

@@ -131,4 +131,28 @@ class Account
     {
         return $this->validTo;
     }
+
+    /**
+     * Set employee
+     *
+     * @param \Trejdl\EmployeeBundle\Entity\Employee $employee
+     *
+     * @return Account
+     */
+    public function setEmployee(\Trejdl\EmployeeBundle\Entity\Employee $employee = null)
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \Trejdl\EmployeeBundle\Entity\Employee
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
 }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accounts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Validto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td><a href="{{ path('accountCRUD_show', { 'id': account.id }) }}">{{ account.id }}</a></td>
+                <td>{{ account.username }}</td>
+                <td>{{ account.password }}</td>
+                <td>{% if account.validTo %}{{ account.validTo|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accountCRUD_show', { 'id': account.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accountCRUD_edit', { 'id': account.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accountCRUD_new') }}">Create a new account</a>
+        </li>
+    </ul>
+{% endblock %}

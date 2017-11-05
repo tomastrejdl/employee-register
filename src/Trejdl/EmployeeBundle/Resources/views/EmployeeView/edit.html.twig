@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block title %}Editing {{ employee.firstName ~ " " ~ employee.lastName}} | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+            'assets/css/employee/edit.css'
+            'assets/css/employee/employee.css'
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <a href="{{ path('employee-detail', {'employee_id': employee.id}) }}" class="fab arrow-back bg-white">
+        <i class="material-icons color-black">arrow_back</i>
+    </a>
+
+    <header>
+        <h1>Editing employee {{ employee.firstName ~ " " ~ employee.lastName}}</h1>
+    </header>
+
+    <main>
+        <article>
+            {{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+            {{ form_widget(form, {'attr': {'class': 'my-form-widget'}}) }}
+            {{ form_end(form) }}
+        </article>
+    </main>
+{% endblock %}

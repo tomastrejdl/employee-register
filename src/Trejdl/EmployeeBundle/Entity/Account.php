@@ -43,7 +43,7 @@ class Account
     private $validTo;
 
     /**
-     * Many Accounts belong to One Employee
+     * Many MyAccountsView belong to One Employee
      * @ORM\ManyToOne(targetEntity="Employee")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */

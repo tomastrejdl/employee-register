@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block title %} Create account | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+            'assets/css/my-accounts/create.css'
+            'assets/css/my-accounts/my-accounts.css'
+        filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Create account</h1>
+    </header>
+
+    <main>
+        <article>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </article>
+    </main>
+{% endblock %}
