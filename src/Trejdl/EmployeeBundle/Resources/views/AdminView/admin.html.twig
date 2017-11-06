@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Admin | Employee register{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 'assets/css/admin/admin.css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Admin Console</h1>
+    </header>
+
+    <main>
+        <a href="{{ path('admin-add-default-employees') }}" class="btn">
+            <i class="material-icons color-black">add</i>
+            Add Default Employees
+        </a>
+    </main>
+{% endblock %}

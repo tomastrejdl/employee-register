@@ -15,7 +15,10 @@ article {
 
 .profile_picture {
 	grid-area: photo;
-    font-size: 400px
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15em;
 }
 
 .name, .position, .email, .tel, .web {

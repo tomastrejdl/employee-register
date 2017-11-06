@@ -3,6 +3,7 @@
 namespace Trejdl\EmployeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Account
@@ -25,6 +26,7 @@ class Account
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -32,6 +34,7 @@ class Account
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -46,6 +49,7 @@ class Account
      * Many MyAccountsView belong to One Employee
      * @ORM\ManyToOne(targetEntity="Employee")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $employee;
 

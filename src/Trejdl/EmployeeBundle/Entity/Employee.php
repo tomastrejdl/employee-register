@@ -3,6 +3,7 @@
 namespace Trejdl\EmployeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Employee
@@ -25,6 +26,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -32,6 +34,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
@@ -39,6 +42,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -46,6 +50,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $phone;
 
@@ -60,6 +65,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="room", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $room;
 
@@ -67,6 +73,7 @@ class Employee
      * Many Employees have One Role
      * @ORM\ManyToOne(targetEntity="Role")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $role;
 

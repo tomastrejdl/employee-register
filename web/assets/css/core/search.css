@@ -7,7 +7,7 @@ header {
 }
 
 main {
-	margin-bottom: calc(3em + 1.8em);
+	min-height: calc(100vh - 4em - 1.8em - 3.5em);;
 }
 
 article {

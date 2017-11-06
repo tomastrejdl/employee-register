@@ -3,6 +3,7 @@
 namespace Trejdl\EmployeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Role
@@ -25,6 +26,7 @@ class Role
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -32,6 +34,7 @@ class Role
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=1023)
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -39,6 +42,7 @@ class Role
      * @var bool
      *
      * @ORM\Column(name="isVisible", type="boolean")
+     * @Assert\NotBlank()
      */
     private $isVisible;
 

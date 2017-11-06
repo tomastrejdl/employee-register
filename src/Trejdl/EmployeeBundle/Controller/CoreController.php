@@ -33,6 +33,7 @@ class CoreController extends Controller
             // ...
         ));
     }
+
     /**
      * @Route("/search", name="search")
      */
