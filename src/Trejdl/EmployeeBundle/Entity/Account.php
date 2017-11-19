@@ -2,16 +2,21 @@
 
 namespace Trejdl\EmployeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Account
  *
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="Trejdl\EmployeeBundle\Repository\AccountRepository")
+ * @UniqueEntity("username")
  */
-class Account
+class Account implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var int
@@ -42,22 +47,32 @@ class Account
      * @var \DateTime
      *
      * @ORM\Column(name="validTo", type="datetime", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $validTo;
 
     /**
-     * Many MyAccountsView belong to One Employee
-     * @ORM\ManyToOne(targetEntity="Employee")
+     * @var Employee
+     *
+     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="accounts")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      * @Assert\NotBlank()
      */
     private $employee;
 
-
     /**
      * Get id
      *
      * @return int
+     */
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -158,5 +173,75 @@ class Account
     public function getEmployee()
     {
         return $this->employee;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        $roles = [];
+        foreach( $this->employee->getRoles() as $role)
+            $roles[] = $role->getTitle();
+        if (empty($roles)) {
+            $roles[] = 'ROLE_ANON';
+        }
+        return $roles;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function isAccountNonExpired()
+    {
+        $validTo = $this->getValidTo();
+        $now = new \DateTime();
+        return ($validTo > $now)? true : false;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return true;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->validTo
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->validTo
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 }

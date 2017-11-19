@@ -1,4 +1,8 @@
-article {
+h1{
+    text-align: center;
+}
+
+.employee-info {
 	display: grid;
     grid-template-columns: 50% 1fr;
 	grid-template-rows: repeat(5, 10%) 4fr 1fr;
@@ -62,4 +66,40 @@ article {
     .arrow-back {
         display: none;
     }
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td, table th {
+	padding: .5em;
+	text-align: center;
+}
+
+table tr:nth-child(even) {
+	background-color: #F2F2F2;
+}
+
+table tr:hover {
+	background-color: #DDD;
+}
+
+table th {
+	padding: .8em 0;
+}
+
+.action-btn {
+	visibility: hidden;
+	text-decoration: none;
+}
+
+tr:hover .action-btn {
+	visibility: visible;
+}
+
+.create-account {
+    color: white;
+    margin-top: 1rem;
 }

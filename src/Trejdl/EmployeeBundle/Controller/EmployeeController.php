@@ -20,17 +20,10 @@ class EmployeeController extends Controller
     public function createAction(Request $request)
     {
         $employee = new Employee;
-
-        $form = $this->createForm(EmployeeType::class);
-
+        $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $employee = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employee);
-            $em->flush();
+            $this->get('employee_functionality')->create($employee);
 
             return $this->redirectToRoute('employee-detail', array('employee_id' =>  $employee->getId() ));
         }
@@ -45,9 +38,10 @@ class EmployeeController extends Controller
      */
     public function detailAction($employee_id)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Employee::class);
-        $employee = $repository->findOneById($employee_id);
+        $em = $this->getDoctrine()->getManager();
+        $employee =  $em->getRepository(Employee::class)->find($employee_id);
+        $accounts = $em->getRepository(Account::class)->findByEmployee($employee_id);
+        $roles = $employee->getRoles();
 
         if (!$employee)
             throw $this->createNotFoundException(
@@ -55,18 +49,19 @@ class EmployeeController extends Controller
             );
 
         return $this->render('TrejdlEmployeeBundle:EmployeeView:detail.html.twig', array(
-            "employee" => $employee
+            "employee" => $employee,
+            "accounts" => $accounts,
+            "roles" => $roles
         ));
     }
 
     /**
-     * @Route("/employee/{employee_id}/edit", name="employee-edit")
+     * @Route("/employee/{employee_id}/update", name="employee-update")
      */
     public function editAction($employee_id, Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Employee::class);
-        $employee = $repository->findOneByid($employee_id);
+        $em = $this->getDoctrine()->getManager();
+        $employee = $em->getRepository(Employee::class)->find($employee_id);
 
         if (!$employee)
             throw $this->createNotFoundException(
@@ -78,34 +73,23 @@ class EmployeeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $employee = $form->getData();
-
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             return $this->redirectToRoute('employee-detail', array('employee_id' => $employee_id) );
         }
 
-        return $this->render('TrejdlEmployeeBundle:EmployeeView:edit.html.twig', array(
+        return $this->render('TrejdlEmployeeBundle:EmployeeView:update.html.twig', array(
             "employee" => $employee,
             'form' => $form->createView()
         ));
     }
 
     /**
-     * @Route("/employee/delete/{employee_id}", name="employee-delete")
+     * @Route("/employee/{employee_id}/delete", name="employee-delete")
      */
     public function deleteAction($employee_id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $employee =  $em->getRepository(Employee::class)->find($employee_id);
-
-        if (!$employee)
-            throw $this->createNotFoundException(
-                'Employee with id: '.$employee_id.' does not exist!'
-            );
-
-        $em->remove($employee);
-        $em->flush();
+        $this->get('employee_functionality')->delete($employee_id);
 
         return $this->redirectToRoute('search');
     }

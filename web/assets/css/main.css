@@ -39,7 +39,7 @@ nav {
     padding: 0 2em;
 }
 
-nav > a {
+nav  a {
 	color: #F5F5F5; /* grey 100 */
 	text-decoration: none;
 }
@@ -48,6 +48,16 @@ nav > a {
 	display: flex;
 	align-items: center;
 	color: #F5F5F5; /* grey 100 */
+}
+
+.login-logout-user {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.login-logout-user > a {
+    margin: 0 1em;
 }
 
 footer {

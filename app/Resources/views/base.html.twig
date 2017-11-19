@@ -18,18 +18,32 @@
 </head>
 <body>
 <nav>
-    <a href="{{ path('homepage') }}">
-        <i class="material-icons">home</i>
-    </a>
+    <div>
+        <a href="{{ path('homepage') }}">
+            <i class="material-icons">home</i>
+        </a>
+        <a href="{{ path('search') }}">
+            <i class="material-icons">list</i>
+        </a>
+    </div>
+
     <form class="search nav-search">
         <input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" disabled>
         <input type="button" class="btn" value="Search" disabled>
     </form>
 
-    <a href="{{ path('my-accounts-list', {'employee_id': 1}) }}" class="user-nav">
-        <i class="material-icons">person</i>
-        John Doe
-    </a>
+    <div class="login-logout-user">
+        {% if app.user %}
+            <a href="{{ path('employee-detail', {'employee_id':  employee_by_account_id.get(app.user.id).getId}) }}" class="user-nav">
+<i class="material-icons">person</i>
+{{ employee_by_account_id.get(app.user.id).getFirstName }}
+</a>
+<a href="{{ path('logout') }}">Logout</a>
+{% else %}
+    <a href="{{ path('login') }}">Login</a>
+{% endif %}
+</div>
+
 </nav>
 
 {% block body %}{% endblock %}

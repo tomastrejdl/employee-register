@@ -2,6 +2,7 @@
 
 namespace Trejdl\EmployeeBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Trejdl\EmployeeBundle\Entity\Employee;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,9 +28,17 @@ class EmployeeType extends AbstractType
             ->add('web', UrlType::class, array(
                 'required'   => false))
             ->add('room', TextType::class)
-            ->add('role', EntityType::class, array(
+            ->add('roles', EntityType::class, array(
                 'class' => 'TrejdlEmployeeBundle:Role',
-                'choice_label' => 'title'
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                        ->where('r.isVisible = ?1')
+                        ->setParameter(1, true);
+                },
+                'choice_label' => 'description',
+                'multiple' => 'true',
+                'expanded' => 'true',
+
             ))
             ->add('save', SubmitType::class)
         ;

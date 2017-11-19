@@ -2,7 +2,10 @@
 
 namespace Trejdl\EmployeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Employee
@@ -38,14 +41,14 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, unique=true)
      */
     private $phone;
 
@@ -64,187 +67,26 @@ class Employee
     private $room;
 
     /**
-     * Many Employees have One Role
-     * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @var Role[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="employees")
+     * @ORM\JoinTable(name="employees_roles")
      */
-    private $role;
+    private $roles;
+
+    /**
+     * @var Account[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="employee")
+     */
+    private $accounts;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return Employee
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
 
-        return $this;
-    }
 
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Employee
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Employee
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     *
-     * @return Employee
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Set web
-     *
-     * @param string $web
-     *
-     * @return Employee
-     */
-    public function setWeb($web)
-    {
-        $this->web = $web;
-
-        return $this;
-    }
-
-    /**
-     * Get web
-     *
-     * @return string
-     */
-    public function getWeb()
-    {
-        return $this->web;
-    }
-
-    /**
-     * Set room
-     *
-     * @param string $room
-     *
-     * @return Employee
-     */
-    public function setRoom($room)
-    {
-        $this->room = $room;
-
-        return $this;
-    }
-
-    /**
-     * Get room
-     *
-     * @return string
-     */
-    public function getRoom()
-    {
-        return $this->room;
-    }
-
-    /**
-     * Set role
-     *
-     * @param \Trejdl\EmployeeBundle\Entity\Role $role
-     *
-     * @return Employee
-     */
-    public function setRole(\Trejdl\EmployeeBundle\Entity\Role $role = null)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return \Trejdl\EmployeeBundle\Entity\Role
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 }

@@ -37,12 +37,17 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        employee_by_account_id: '@employee_by_account_id'
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: pdo_sqlite
-        path: '%database_path%'
+        driver: pdo_mysql
+        host: '%database_host%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
         charset: UTF8
 
         # if using pdo_sqlite as your database driver:

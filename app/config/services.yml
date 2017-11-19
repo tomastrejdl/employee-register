@@ -16,3 +16,26 @@ services:
 
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+
+    Trejdl\EmployeeBundle\:
+        resource: '../../src/Trejdl\EmployeeBundle/*'
+        exclude: '../../src/Trejdl/EmployeeBundle/{Entity,Repository,Tests}'
+
+    Trejdl\EmployeeBundle\Controller\:
+        resource: '../../src/Trejdl/EmployeeBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    employee_functionality:
+        class: Trejdl\EmployeeBundle\Service\Functionality\EmployeeFunctionality
+        public: true
+    account_functionality:
+        class: Trejdl\EmployeeBundle\Service\Functionality\AccountFunctionality
+        public: true
+    role_functionality:
+        class: Trejdl\EmployeeBundle\Service\Functionality\RoleFunctionality
+        public: true
+
+    employee_by_account_id:
+        class:  Trejdl\EmployeeBundle\Service\EmployeeByAccountId
+        public: true

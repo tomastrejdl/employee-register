@@ -2,3 +2,6 @@ trejdl_employee:
     resource: "@TrejdlEmployeeBundle/Controller/"
     type:     annotation
     prefix:   /
+
+logout:
+    path: /logout

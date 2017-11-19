@@ -39,14 +39,8 @@ class CoreController extends Controller
      */
     public function searchAction()
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Employee::class);
-        $employees = $repository->findAll();
-
-        if (!$employees)
-            throw $this->createNotFoundException(
-                'No employees found'
-            );
+        $em = $this->getDoctrine()->getManager();
+        $employees =  $em->getRepository(Employee::class)->findAll();
 
         return $this->render('TrejdlEmployeeBundle:CoreView:search.html.twig', array(
             "employees" => $employees,

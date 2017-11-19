@@ -2,14 +2,18 @@
 
 namespace Trejdl\EmployeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Role
  *
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="Trejdl\EmployeeBundle\Repository\RoleRepository")
+ * @UniqueEntity("title")
  */
 class Role
 {
@@ -25,7 +29,7 @@ class Role
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
      * @Assert\NotBlank()
      */
     private $title;
@@ -33,7 +37,7 @@ class Role
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=1023)
+     * @ORM\Column(name="description", type="string", length=255)
      * @Assert\NotBlank()
      */
     private $description;
@@ -46,11 +50,32 @@ class Role
      */
     private $isVisible;
 
-
+    /**
+     * @var Employee[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="roles")
+     * @Assert\NotBlank()
+     */
+    private $employees;
     /**
      * Get id
      *
      * @return int
+     */
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -122,10 +147,46 @@ class Role
     /**
      * Get isVisible
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsVisible()
     {
         return $this->isVisible;
+    }
+
+    /**
+     * Add employee
+     *
+     * @param \Trejdl\EmployeeBundle\Entity\Employee $employee
+     *
+     * @return Role
+     */
+    public function addEmployee(\Trejdl\EmployeeBundle\Entity\Employee $employee)
+    {
+        $this->employees[] = $employee;
+        $employee->addRole($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove employee
+     *
+     * @param \Trejdl\EmployeeBundle\Entity\Employee $employee
+     */
+    public function removeEmployee(\Trejdl\EmployeeBundle\Entity\Employee $employee)
+    {
+        $this->employees->removeElement($employee);
+        $employee->removeRole($this);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

@@ -53,7 +53,7 @@ class AdminController extends Controller
             $employee->setRoom("101");
             $roles = $em->getRepository(Role::class)->findAll();
             $role_id = array_rand($roles,1);
-            $employee->setRole($roles[$role_id]);
+            $employee->addRole($roles[$role_id]);
             $em->persist($employee);
             $i++;
         }

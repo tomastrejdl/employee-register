@@ -6,8 +6,8 @@
 
 {% block stylesheets %}
     {% stylesheets
-            'assets/css/my-accounts/edit.css'
-            'assets/css/my-accounts/my-accounts.css'
+            'assets/css/account/edit.css'
+            'assets/css/account/account.css'
         filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -19,7 +19,7 @@
     </header>
 
     <main>
-        <a href="{{ path('my-accounts-list', {'employee_id': employee_id}) }}" class="fab arrow-back bg-white">
+        <a href="{{ path('employee-detail', {'employee_id': employee_id}) }}" class="fab arrow-back bg-white">
             <i class="material-icons color-black">arrow_back</i>
         </a>
         <article>

@@ -2,7 +2,10 @@
 
 namespace Trejdl\EmployeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Role
@@ -24,14 +27,14 @@ class Role
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=1023)
+     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
@@ -42,86 +45,17 @@ class Role
      */
     private $isVisible;
 
-
+    /**
+     * @var Employee[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="roles")
+     */
+    private $employees;
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Role
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
 
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Role
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set isVisible
-     *
-     * @param boolean $isVisible
-     *
-     * @return Role
-     */
-    public function setIsVisible($isVisible)
-    {
-        $this->isVisible = $isVisible;
-
-        return $this;
-    }
-
-    /**
-     * Get isVisible
-     *
-     * @return bool
-     */
-    public function getIsVisible()
-    {
-        return $this->isVisible;
-    }
 }

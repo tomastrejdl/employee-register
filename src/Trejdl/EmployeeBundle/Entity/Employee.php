@@ -2,14 +2,18 @@
 
 namespace Trejdl\EmployeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Employee
  *
  * @ORM\Table(name="employee")
  * @ORM\Entity(repositoryClass="Trejdl\EmployeeBundle\Repository\EmployeeRepository")
+ * @UniqueEntity("email")
  */
 class Employee
 {
@@ -41,16 +45,18 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Regex("/[+]?\d{3}[-. ]?\d{3}[-. ]?\d{3}[-. ]?(\d{3})?/")
      */
     private $phone;
 
@@ -58,6 +64,7 @@ class Employee
      * @var string
      *
      * @ORM\Column(name="web", type="string", length=255, nullable=true)
+     * @Assert\Url()
      */
     private $web;
 
@@ -70,17 +77,42 @@ class Employee
     private $room;
 
     /**
-     * Many Employees have One Role
-     * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @var Role[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="employees")
+     * @ORM\JoinTable(name="employees_roles")
      * @Assert\NotBlank()
      */
-    private $role;
+    private $roles;
+
+    /**
+     * @var Account[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="employee")
+     */
+    private $accounts;
 
     /**
      * Get id
      *
      * @return int
+     */
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -232,26 +264,70 @@ class Employee
     }
 
     /**
-     * Set role
+     * Add role
      *
      * @param \Trejdl\EmployeeBundle\Entity\Role $role
      *
      * @return Employee
      */
-    public function setRole(\Trejdl\EmployeeBundle\Entity\Role $role = null)
+    public function addRole(\Trejdl\EmployeeBundle\Entity\Role $role)
     {
-        $this->role = $role;
+        $this->roles[] = $role;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Remove role
      *
-     * @return \Trejdl\EmployeeBundle\Entity\Role
+     * @param \Trejdl\EmployeeBundle\Entity\Role $role
      */
-    public function getRole()
+    public function removeRole(\Trejdl\EmployeeBundle\Entity\Role $role)
     {
-        return $this->role;
+        $this->roles->removeElement($role);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Add account
+     *
+     * @param \Trejdl\EmployeeBundle\Entity\Account $account
+     *
+     * @return Employee
+     */
+    public function addAccount(\Trejdl\EmployeeBundle\Entity\Account $account)
+    {
+        $this->accounts[] = $account;
+
+        return $this;
+    }
+
+    /**
+     * Remove account
+     *
+     * @param \Trejdl\EmployeeBundle\Entity\Account $account
+     */
+    public function removeAccount(\Trejdl\EmployeeBundle\Entity\Account $account)
+    {
+        $this->accounts->removeElement($account);
+    }
+
+    /**
+     * Get accounts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
     }
 }
