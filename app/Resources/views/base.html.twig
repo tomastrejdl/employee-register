@@ -17,34 +17,10 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-<nav>
-    <div>
-        <a href="{{ path('homepage') }}">
-            <i class="material-icons">home</i>
-        </a>
-        <a href="{{ path('search') }}">
-            <i class="material-icons">list</i>
-        </a>
-    </div>
-
-    <form class="search nav-search">
-        <input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" disabled>
-        <input type="button" class="btn" value="Search" disabled>
-    </form>
-
-    <div class="login-logout-user">
-        {% if app.user %}
-            <a href="{{ path('employee-detail', {'employee_id':  employee_by_account_id.get(app.user.id).getId}) }}" class="user-nav">
-<i class="material-icons">person</i>
-{{ employee_by_account_id.get(app.user.id).getFirstName }}
-</a>
-<a href="{{ path('logout') }}">Logout</a>
-{% else %}
-    <a href="{{ path('login') }}">Login</a>
+{% if app.request.get('_route') != 'login' %}
+    {% import 'header.html.twig' as header %}
+    {{ header.nav }}
 {% endif %}
-</div>
-
-</nav>
 
 {% block body %}{% endblock %}
 

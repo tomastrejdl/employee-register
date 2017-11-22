@@ -24,7 +24,6 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 4em;
-	background-color: #3F51B5; /* indigo 500 */
 	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.2);
 }
 
@@ -59,6 +58,11 @@ nav  a {
 .login-logout-user > a {
     margin: 0 1em;
 }
+
+.login-logout-user i {
+    margin: 0 .3em;
+}
+
 
 footer {
 	position: relative;
@@ -165,3 +169,43 @@ input:focus {
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/* HEADER DROPDOWN */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 1em;
+    text-decoration: none;
+    display: block;
+}
+
+.login-logout-user {
+    display: inline-block;
+}
+
+.login-logout-user a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+.user-nav {
+    border: none;
+    background-color: transparent;
+    padding: 1.5em .5em;
+}
+
+.user-nav > i {
+    z-index: -1;
+}
+
+.user-nav:focus, .login-logout-user:focus {
+    outline: none;
+}

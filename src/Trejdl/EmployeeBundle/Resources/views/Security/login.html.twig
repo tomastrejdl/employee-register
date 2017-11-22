@@ -9,20 +9,16 @@
 {% endblock %}
 
 {% block body %}
-    <header>
-        <h1>Login</h1>
-    </header>
-
-    <main>
+    <main class="bg-grey-200">
         <article>
+            <span class="color-indigo-500">EMPLOYEE REGISTER</span>
+            <h1>Login</h1>
             {% if error %}
                 <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             <form action="{{ path('login') }}" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-                <br \>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="_password" />
@@ -33,7 +29,7 @@
                     <input type="hidden" name="_target_path" value="/account" />
                 #}
 
-                <button type="submit">login</button>
+                <button type="submit" class="bg-indigo-500 color-grey-200">Login</button>
             </form>
         </article>
     </main>

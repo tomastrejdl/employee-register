@@ -23,6 +23,15 @@
                 <h1 class="name">{{ employee.firstName ~ " " ~ employee.lastName }}</h1>
                 <span class="position">
                     {% for role in roles %}
+                        <i class="material-icons">
+                            {% if(role.title == 'ROLE_USER') %}
+                                    account_circle
+                            {% elseif(role.title == 'ROLE_ADMIN') %}
+                                    security
+                            {% elseif(role.title == 'ROLE_SUPER_ADMIN') %}
+                                    security
+                            {% endif %}
+                         </i>
                         {{ role.description }} <br />
                     {% endfor %}
                 </span>

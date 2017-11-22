@@ -29,3 +29,15 @@ article {
     top: 8em;
     left: 5%;
 }
+
+#account_validTo {
+    display: flex;
+    flex-direction: row;
+}
+
+#account_validTo select {
+    width: initial;
+    height: initial;
+    padding: 0 1em;
+    margin: 0 .5em;
+}

@@ -1,24 +1,38 @@
-header {
-    margin-top: 4em;
-}
-
-h1 {
-    padding-top: .5em;
-    text-align: center;
-}
-
 main {
-    height: calc(100vh - 4em - 1.8em - 3.5em);
+    height: calc(100vh - 1.8em);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 article {
-    height: 95%;
+    height: 50vh;
+    width: 50vh;
     background-color: #fff;
     padding: 3em;
     border-radius: 2px;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.2);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+label {
+    display: block;
+    margin: 1em 0 .3em 0;
+}
+
+input {
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    margin: 0 0 1em 0;
+    padding: .5em 1em
+}
+
+form button {
+    float: right;
+    margin: 1em;
 }

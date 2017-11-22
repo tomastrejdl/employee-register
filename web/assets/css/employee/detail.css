@@ -36,6 +36,12 @@ h1{
 
 .position {
 	grid-area: position;
+	display: flex;
+    align-items: center;
+}
+
+.position > * {
+    margin: 0 .3em;
 }
 
 .email {

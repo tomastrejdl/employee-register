@@ -1,0 +1,52 @@
+{% macro nav() %}
+    <nav class="bg-indigo-500">
+        <div>
+            <a href="{{ path('homepage') }}">
+                <i class="material-icons">home</i>
+            </a>
+            <a href="{{ path('search') }}">
+                <i class="material-icons">list</i>
+            </a>
+        </div>
+
+        <form class="search nav-search">
+            <input type="search" name="search" placeholder="Search employees by name or email adress ..." class="search-bar" disabled>
+            <input type="button" class="btn" value="Search" disabled>
+        </form>
+
+        <div class="login-logout-user">
+            {% if app.user %}
+                <button class="user-nav" onclick="showDropdown()">
+                    <i class="material-icons">account_circle</i>
+                    {{ employee_by_account_id.get(app.user.id).getFirstName }}
+                    <i class="material-icons">expand_more</i>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="{{ path('employee-detail', {'employee_id':  employee_by_account_id.get(app.user.id).getId}) }}">My Profile</a>
+                    <a href="{{ path('logout') }}">Log Out</a>
+                </div>
+            {% else %}
+                <a href="{{ path('login') }}">Log In</a>
+            {% endif %}
+        </div>
+    </nav>
+    <script>
+        function showDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-nav')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+{% endmacro %}
